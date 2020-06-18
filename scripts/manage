@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -eou
+
+rm -Rf target/
+
+lein uberjar
+
+# Enviroment where the lambda will be deployed ex.: prod.
+env=""
+
+# AWS account id.
+account_id=""
+
+# Lambda role name.
+role_name=""
+
+# Bucket where the lambda artifact will be stored.
+bucket_to_upload_jar=""
+
+lambda_name="shaggy-rogers"
+namespace="shaggy-rogers.service/-handler"
+standalone=$(find target/ -type f | grep standalone.jar)
+key="$lambda_name/$standalone"
+
+function deploy {
+    aws lambda create-function  --function-name "lambda-$lambda_name-$env" --handler $namespace --runtime java8 --role "arn:aws:iam::$account_id:role/$role_name"  --memory-size 512 --timeout 900 --code S3Bucket=$bucket,S3Key=$key
+}
+
+function upload-artifact-to-s3 {
+    echo "Uploading artifact $standalone to s3://$bucket_to_upload_jar/$key"
+    aws s3 cp "$standalone" "s3://$bucket_to_upload_jar/$key"
+}
+
+function update {
+    aws lambda update-function-code --function-name "lambda-$lambda_name-$env" --s3-bucket "$bucket_to_upload_jar" --s3-key "$key"
+}
+
+upload-artifact-to-s3
+$1
