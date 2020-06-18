@@ -1,6 +1,7 @@
 # shaggy-rogers
+![image](https://user-images.githubusercontent.com/12648924/84968381-b85b8f00-b0ec-11ea-988b-709af25c97f0.png)
 
-Clojure lambda which knows how to scan (blob files)[https://tika.apache.org/0.9/formats.html#Supported_Document_Formats] and find sensitive information.
+Clojure lambda which knows how to scan [blob files](https://tika.apache.org/0.9/formats.html#Supported_Document_Formats) and find sensitive information.
 
 ## Installation
 
