@@ -3,7 +3,8 @@
             [pantomime.extract :as extract]
             [shaggy-rogers.detectors.jwt-tokens :as detector.jwt]
             [shaggy-rogers.detectors.pii :as detector.pii]
-            [cognitect.aws.client.api :as aws])
+            [cognitect.aws.client.api :as aws]
+            [clojure.java.io :as io])
   (:import (java.io File)))
 
 (defn- sanitize-text [text]
@@ -30,6 +31,7 @@
               :Body
               (clojure.java.io/copy (File. file-path)))
         input {:text-document (extract-text-from-file file-path)}]
+    (io/delete-file file-path)
     (println {:fn :check-s3-file :input input})
     (-> input
         invoke-all-detectors
