@@ -1,7 +1,7 @@
 (ns shaggy-rogers.service
   (:require [clojure.test :refer :all]))
 
-(def cloud-input-trail-example {:detail-type "AWS API Call via CloudTrail"
+(def cloud-trail-input-example {:detail-type "AWS API Call via CloudTrail"
                                 :time        "2020-06-16T06:37:36Z"
                                 :source      "aws.s3"
                                 :account     "111111111111"
