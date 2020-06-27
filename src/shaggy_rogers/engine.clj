@@ -19,15 +19,16 @@
       sanitize-text
       string/join))
 
-(def invoke-all-detectors
+(def ^:private invoke-all-detectors
   (comp
     detector.pii/handler
     detector.jwt/handler))
 
 (defn check-s3-file [bucketName key s3]
   (let [file-path (format "/tmp/%s" key)
-        file-content (-> (aws/invoke s3 {:op :GetObject :request {:Bucket bucketName :Key key}}) :Body)
-        _ (clojure.java.io/copy file-content (File. file-path))
+        _ (-> (aws/invoke s3 {:op :GetObject :request {:Bucket bucketName :Key key}})
+              :Body
+              (clojure.java.io/copy (File. file-path)))
         input {:text-document (extract-text-from-file file-path)}]
     (println {:fn :check-s3-file :input input})
     (-> input
