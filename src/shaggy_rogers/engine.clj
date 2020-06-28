@@ -3,6 +3,7 @@
             [pantomime.extract :as extract]
             [shaggy-rogers.detectors.jwt-tokens :as detector.jwt]
             [shaggy-rogers.detectors.pii :as detector.pii]
+            [shaggy-rogers.detectors.credit-card :as detector.credit-card]
             [cognitect.aws.client.api :as aws]
             [clojure.java.io :as io])
   (:import (java.io File)))
@@ -23,7 +24,8 @@
 (def ^:private invoke-all-detectors
   (comp
     detector.pii/handler
-    detector.jwt/handler))
+    detector.jwt/handler
+    detector.credit-card/handler))
 
 (defn check-s3-file [bucketName key s3]
   (let [file-path (format "/tmp/%s" key)
