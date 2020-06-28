@@ -33,7 +33,7 @@
     6011909190419909660
     377803973923669"})
 
-(deftest error-handler
+(deftest handler
   (testing "checking if there's a credit card number"
     (testing "when there's a credit card number"
       (is (= result-when-there-is-a-credit-card

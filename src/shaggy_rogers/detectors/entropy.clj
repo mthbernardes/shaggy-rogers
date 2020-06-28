@@ -3,6 +3,7 @@
 
 (def ^:private entropy-score 3.59)
 
+;; https://gist.github.com/agarman/dbb3a6649497c2eaa0353ada9f6639ae
 (defn- log2 [n] (/ (Math/log n) (Math/log 2)))
 
 (defn- entropy
