@@ -12,7 +12,9 @@
     (testing "testing a file in s3 with sensitive data"
       (mfn.macro/providing
         [(aws/invoke s3-client {:op :GetObject :request {:Bucket "cool-balde-full-of-files" :Key "document-with-pii.pdf"}}) {:Body document-with-sensitive-data}]
-        (is (= {:jwt-detector {:tokens ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9."]}}
+        (is (= {:high-entropy [{:score 5.194392237281236
+                                :word  "this:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9."}]
+                :jwt-detector {:tokens ["eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9."]}}
                (engine/check-s3-file "cool-balde-full-of-files" "document-with-pii.pdf" s3-client)))))
 
     (testing "testing a file in s3 without any sensitive data"

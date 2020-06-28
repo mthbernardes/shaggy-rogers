@@ -26,7 +26,7 @@
   (comp
     detector.pii/handler
     detector.jwt/handler
-    detector.entropy/entropy
+    detector.entropy/handler
     detector.credit-card/handler))
 
 (defn check-s3-file [bucketName key s3]
