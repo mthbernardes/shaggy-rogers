@@ -15,3 +15,8 @@ Clojure lambda which knows how to scan [blob files](https://tika.apache.org/0.9/
 
 ### Update shaggy-rogers
 `bash scripts/manage deploy`
+
+### Detectors
+- Credit card numbers
+- JWT Tokens
+- PII (only CPF by now)
