@@ -21,5 +21,5 @@ Clojure lambda which knows how to scan [blob files](https://tika.apache.org/0.9/
 ### Detectors
 - Credit card numbers
 - JWT Tokens
-- PII (only CPF by now)
+- PII (CPF and emails)
 - Shannon's entropy
