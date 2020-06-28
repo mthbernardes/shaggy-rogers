@@ -4,6 +4,7 @@
             [shaggy-rogers.detectors.jwt-tokens :as detector.jwt]
             [shaggy-rogers.detectors.pii :as detector.pii]
             [shaggy-rogers.detectors.credit-card :as detector.credit-card]
+            [shaggy-rogers.detectors.entropy :as detector.entropy]
             [cognitect.aws.client.api :as aws]
             [clojure.java.io :as io])
   (:import (java.io File)))
@@ -25,6 +26,7 @@
   (comp
     detector.pii/handler
     detector.jwt/handler
+    detector.entropy/entropy
     detector.credit-card/handler))
 
 (defn check-s3-file [bucketName key s3]
