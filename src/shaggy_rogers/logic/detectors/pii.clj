@@ -14,10 +14,10 @@
         formatted? (partial re-find #"^\d{11}$")
         checksum-ok? (fn [digit digits] (= (calculate-cpf-checksum digit digits) (nth digits digit)))]
     (and
-      (not (blacklisted? cpf))
-      (formatted? cpf)
-      (checksum-ok? 9 digits)
-      (checksum-ok? 10 digits))))
+     (not (blacklisted? cpf))
+     (formatted? cpf)
+     (checksum-ok? 9 digits)
+     (checksum-ok? 10 digits))))
 
 (defn- find-cpf-by-regex [text-document]
   (re-seq #"[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}" text-document))
@@ -27,18 +27,18 @@
 
 (defn- find-cpfs [founded-pii text-document]
   (let [cpfs (some->> text-document
-                         find-cpf-by-regex
-                         (filter validate-cpf)
-                         set)]
+                      find-cpf-by-regex
+                      (filter validate-cpf)
+                      set)]
     (if (empty? cpfs)
       founded-pii
       (assoc founded-pii :cpfs cpfs))))
 
 (defn- find-emails [founded-pii text-document]
   (let [emails (some->> text-document
-                           find-email-by-regex
-                           (filter http-out/valid-email?)
-                           set)]
+                        find-email-by-regex
+                        (filter http-out/valid-email?)
+                        set)]
     (if (empty? emails)
       founded-pii
       (assoc founded-pii :emails emails))))

@@ -1,7 +1,7 @@
 (ns shaggy-rogers.service
   (:gen-class :methods [^:static [handler [java.util.Map] java.util.Map]])
-  (:require [shaggy-rogers.engine :as engine]
-            [cognitect.aws.client.api :as aws]
+  (:require [cognitect.aws.client.api :as aws]
+            [shaggy-rogers.engine :as engine]
             [shaggy-rogers.middleware.lambda :as lambda]))
 
 (def bypass-bucket

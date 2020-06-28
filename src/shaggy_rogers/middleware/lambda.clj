@@ -1,5 +1,5 @@
 (ns shaggy-rogers.middleware.lambda
-  (:import (java.util Map List)))
+  (:import (java.util List Map)))
 
 (defprotocol ConvertibleToClojure
   (->cljmap [o]))
