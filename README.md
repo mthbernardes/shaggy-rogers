@@ -21,3 +21,22 @@ Clojure lambda which knows how to scan [blob files](https://tika.apache.org/0.9/
 - JWT Tokens
 - PII (CPF and emails)
 - Shannon's entropy
+
+### How to create an detector?
+- Create your detector in the following path `src/shaggy_rogers/detectors/`.
+- Add your detector handler on the def `invoke-all-detectors` inside the `src/shaggy_rogers/engine.clj` file.
+
+#### Detector template
+Simple example of a detector which finds the word banana in the files.
+
+```clojure
+(ns shaggy.rogers.detector.bananas)
+
+(defn handler [{:keys [text-document] :as finding}]
+  (println {:fn ::handler :finding finding :text-document text-document})
+  (let [bananas (->> text-document
+                    (re-seq #"banana"))]
+    (if (empty? bananas)
+      finding
+      (assoc finding :banana-detector {:bananas bananas}))))
+```
