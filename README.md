@@ -1,8 +1,6 @@
 # shaggy-rogers
 ![image](https://user-images.githubusercontent.com/12648924/84968381-b85b8f00-b0ec-11ea-988b-709af25c97f0.png)
 
-[![mthbernardes](https://circleci.com/gh/mthbernardes/shaggy-rogers.svg?style=shield)](https://circleci.com/gh/mthbernardes/shaggy-rogers)
-
 Clojure lambda which knows how to scan [blob files](https://tika.apache.org/0.9/formats.html#Supported_Document_Formats) and find sensitive information.
 
 ## Installation
