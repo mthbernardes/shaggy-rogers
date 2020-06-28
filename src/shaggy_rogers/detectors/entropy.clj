@@ -1,20 +1,8 @@
 (ns shaggy-rogers.detectors.entropy
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as string]
+            [shaggy-rogers.logic.detectors.entropy :as logic.entropy]))
 
 (def ^:private entropy-score 3.59)
-
-;; https://gist.github.com/agarman/dbb3a6649497c2eaa0353ada9f6639ae
-(defn- log2 [n] (/ (Math/log n) (Math/log 2)))
-
-(defn- entropy
-  "Calculate Shannon entropy for xs. Higher value is greater entropy.
-  Values returned between 0.0 & 8.0"
-  [xs]
-  (let [freqs (vals (frequencies xs))
-        cnt (reduce + freqs)
-        calc #(let [p (double (/ % cnt))]
-                (* p (log2 p)))]
-    (reduce - 0 (map calc freqs))))
 
 (defn handler [{:keys [text-document] :as finding}]
   (println {:fn :jwt/handler :finding finding :text-document text-document})
@@ -23,7 +11,7 @@
                      (map #(string/split % #" "))
                      flatten
                      (map (fn [word]
-                            (let [entropy-value (entropy word)]
+                            (let [entropy-value (logic.entropy/calculate word)]
                               (if (< entropy-score entropy-value)
                                 {:word word :score entropy-value}))))
                      (filter identity))]

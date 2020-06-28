@@ -1,6 +1,5 @@
 (ns shaggy-rogers.engine
-  (:require [clojure.string :as string]
-            [pantomime.extract :as extract]
+  (:require [shaggy-rogers.logic.engine :as engine]
             [shaggy-rogers.detectors.jwt-tokens :as detector.jwt]
             [shaggy-rogers.detectors.pii :as detector.pii]
             [shaggy-rogers.detectors.credit-card :as detector.credit-card]
@@ -8,19 +7,6 @@
             [cognitect.aws.client.api :as aws]
             [clojure.java.io :as io])
   (:import (java.io File)))
-
-(defn- sanitize-text [text]
-  (filter (fn [line]
-            (not (string/blank? line)))
-          text))
-
-(defn- extract-text-from-file [filepath]
-  (-> filepath
-      extract/parse
-      :text
-      (string/split #"\n")
-      sanitize-text
-      string/join))
 
 (def ^:private invoke-all-detectors
   (comp
@@ -33,7 +19,7 @@
   (let [file-path (format "/tmp/%s" key)
         file-content (-> (aws/invoke s3 {:op :GetObject :request {:Bucket bucketName :Key key}}) :Body)
         _ (clojure.java.io/copy file-content (File. file-path))
-        input {:text-document (extract-text-from-file file-path)}]
+        input {:text-document (engine/extract-text-from-file file-path)}]
     (io/delete-file file-path)
     (println {:fn :check-s3-file :input input})
     (-> input
