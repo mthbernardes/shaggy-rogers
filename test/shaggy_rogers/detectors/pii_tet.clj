@@ -1,7 +1,7 @@
 (ns shaggy-rogers.detectors.pii-tet
   (:require [clojure.test :refer :all]
-            [shaggy-rogers.detectors.pii :as pii]
             [mockfn.macros :as mfn.macro]
+            [shaggy-rogers.detectors.pii :as pii]
             [shaggy-rogers.diplomat.http-out :as http-out]))
 
 ;; Document source: https://www.conjur.com.br/dl/representacao-pgr-bolsonaro-jogo.pdf
@@ -24,12 +24,12 @@ nos termos abaixo explicitados")
 (deftest handler
   (testing "testing pii handler fn"
     (mfn.macro/providing
-      [(http-out/valid-email? "presi.jairbolsonaro@senado.leg.br") true]
-      (testing "testing when there's a pii on the document"
-        (is (= {:pii-detector  {:cpfs   #{"453.178.287-91"}
-                                :emails #{"presi.jairbolsonaro@senado.leg.br"}}
-                :text-document document-with-pii}
-               (pii/handler {:text-document document-with-pii})))))
+     [(http-out/valid-email? "presi.jairbolsonaro@senado.leg.br") true]
+     (testing "testing when there's a pii on the document"
+       (is (= {:pii-detector  {:cpfs   #{"453.178.287-91"}
+                               :emails #{"presi.jairbolsonaro@senado.leg.br"}}
+               :text-document document-with-pii}
+              (pii/handler {:text-document document-with-pii})))))
 
     (testing "testing when there ins't a pii on the document"
       (is (= {:text-document document-without-pii}

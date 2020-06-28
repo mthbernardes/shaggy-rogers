@@ -10,9 +10,9 @@
   (testing "checking if there's a high entropy string"
     (testing "when there's a high entropy string"
       (is (= {:high-entropy  [{:score 4.0
-                              :word  "jJ,.vx>N\"@E&c]5k"}]
-             :text-document "Username: admin\npassword: jJ,.vx>N\"@E&c]5k"}
-            (entropy/handler document-with-high-entropy-string))))
+                               :word  "jJ,.vx>N\"@E&c]5k"}]
+              :text-document "Username: admin\npassword: jJ,.vx>N\"@E&c]5k"}
+             (entropy/handler document-with-high-entropy-string))))
 
     (testing "when there ins't a credit card number"
       (is (= document-without-high-entropy-string

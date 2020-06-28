@@ -11,4 +11,6 @@
                  [com.cognitect.aws/api              "0.8.456"]
                  [com.cognitect.aws/endpoints        "1.1.11.789"]
                  [com.cognitect.aws/s3               "799.2.682.0"]]
-  :aot :all)
+  :aot :all
+  :aliases {"lint"                                       ["do" ["cljfmt" "check"] ["nsorg"] ["eastwood" "{:namespaces [:source-paths]}"]]
+            "lint-fix"                                   ["do" ["cljfmt" "fix"] ["nsorg" "--replace"]]})
