@@ -31,9 +31,8 @@
 
 (defn check-s3-file [bucketName key s3]
   (let [file-path (format "/tmp/%s" key)
-        _ (-> (aws/invoke s3 {:op :GetObject :request {:Bucket bucketName :Key key}})
-              :Body
-              (clojure.java.io/copy (File. file-path)))
+        file-content (-> (aws/invoke s3 {:op :GetObject :request {:Bucket bucketName :Key key}}) :Body)
+        _ (clojure.java.io/copy file-content (File. file-path))
         input {:text-document (extract-text-from-file file-path)}]
     (io/delete-file file-path)
     (println {:fn :check-s3-file :input input})

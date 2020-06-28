@@ -2,87 +2,41 @@
 #
 # Check https://circleci.com/docs/2.0/language-clojure/ for more details
 #
-version: 2.1
-
-job_defaults: &defaults
+version: 2
+jobs:
+  build:
     docker:
-      - image: circleci/clojure:lein-2.8.1
+      # specify the version you desire here
+      - image: circleci/clojure:lein-2.7.1
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
     working_directory: ~/repo
+
     environment:
       LEIN_ROOT: "true"
       # Customize the JVM maximum heap limit
-      JVM_OPTS: "-Xmx3600m"
-      ENVIRONMENT: "test"
-      AWS_REGION: "us-east-1"
+      JVM_OPTS: -Xmx3200m
 
-jobs:
-  build:
-    <<: *defaults
-    # Download and cache dependencies
     steps:
       - checkout
+
+      # Download and cache dependencies
       - restore_cache:
           keys:
-          - shaggy-rogers-{{ checksum "project.clj" }}
-          # fallback to using the latest cache if no exact match is found
-          - shaggy-rogers-
+            - v1-dependencies-{{ checksum "project.clj" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
       - run: lein deps
+
       - save_cache:
           paths:
             - ~/.m2
-          key: shaggy-rogers-{{ checksum "project.clj" }}
+          key: v1-dependencies-{{ checksum "project.clj" }}
 
-  check-dependencies:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - shaggy-rogers-{{ checksum "project.clj" }}
-          # fallback to using the latest cache if no exact match is found
-          - shaggy-rogers-
-      - run:
-          name: "Check dependencies"
-          command: |
-            set +o pipefail
-            lein ancient :allow-snapshots | sed -E 's/.*\[([-a-z.\/]+) .+\"(([0-9]+)[-.0-9a-zA-Z]+).+ .+\"(([0-9]+)[-.0-9a-zA-Z]+).*/\1 \2 \3 \4 \5/' | awk 'BEGIN {ex=""} {if (($3-$5)>1) {print "Fail",$1,$4,"- latest:",$2; ex=ex $1 " ";} else print "Ok",$1,$4} END {if (ex =="") {print "\nEverything is fine."; exit 0} else {print "\nFailed for",ex; exit 1}}'
-
-  unit-tests:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - shaggy-rogers-{{ checksum "project.clj" }}
-          # fallback to using the latest cache if no exact match is found
-          - shaggy-rogers-
+      # run tests!
       - run: lein test
-
-  lint:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - shaggy-rogers-{{ checksum "project.clj" }}
-          # fallback to using the latest cache if no exact match is found
-          - shaggy-rogers-
-      - run: lein lint
-
-workflows:
-  version: 2
-  pull-request-validation:
-    jobs:
-      - build:
-          context: clojure-build-test
-      - check-dependencies:
-          context: clojure-build-test
-          requires:
-            - build
-      - unit-tests:
-          context: clojure-build-test
-          requires:
-            - build
-      - lint:
-          requires:
-            - build
