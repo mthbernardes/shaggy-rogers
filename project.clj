@@ -12,7 +12,7 @@
             [jonase/eastwood "0.3.5" :exclusions [org.clojure/clojure]]
             [s3-wagon-private "1.3.2" :exclusions [commons-logging org.apache.httpcomponents/httpclient]]
             [lein-ancient "0.6.15" :exclusions [com.fasterxml.jackson.core/jackson-databind com.fasterxml.jackson.core/jackson-core]]
-            [lein-nsorg "0.2.0" :exclusions [rewrite-clj]]]
+            [lein-nsorg "0.3.0" :exclusions [rewrite-clj]]]
 
   ;:pedantic? :abort
 
