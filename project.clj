@@ -14,14 +14,13 @@
             [lein-ancient "0.6.15" :exclusions [com.fasterxml.jackson.core/jackson-databind com.fasterxml.jackson.core/jackson-core]]
             [lein-nsorg "0.2.0" :exclusions [rewrite-clj]]]
 
-  :pedantic? :abort
+  ;:pedantic? :abort
 
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/data.json "1.0.0"]
                  [clj-jwt "0.1.1"]
                  [mockfn "0.5.0"]
                  [clj-http "3.10.1"]
-                 [net.sf.jasperreports/jasperreports "5.5.0"]
                  [org.apache.thrift/libthrift "0.10.0"]
                  [org.apache.kafka/kafka-clients "2.0.0"]
                  [com.amazonaws/aws-lambda-java-core "1.2.1"]
