@@ -21,7 +21,7 @@
                  [clj-jwt "0.1.1"]
                  [mockfn "0.5.0"]
                  [clj-http "3.10.1"]
-                 [org.apache.thrift/libthrift "0.10.0"]
+                 [org.apache.thrift/libthrift "0.13.0"]
                  [org.apache.kafka/kafka-clients "2.0.0"]
                  [com.amazonaws/aws-lambda-java-core "1.2.1"]
                  [com.novemberain/pantomime "2.11.0" :exclusions [org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
