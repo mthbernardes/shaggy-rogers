@@ -23,7 +23,6 @@
                  [clj-http "3.10.1"]
                  [net.sf.jasperreports/jasperreports "5.5.0"]
                  [org.apache.thrift/libthrift "0.10.0"]
-                 [commons-beanutils "1.9.2"]
                  [org.apache.kafka/kafka-clients "2.0.0"]
                  [com.amazonaws/aws-lambda-java-core "1.2.1"]
                  [com.novemberain/pantomime "2.11.0" :exclusions [org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
