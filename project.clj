@@ -21,7 +21,6 @@
                  [clj-jwt "0.1.1"]
                  [mockfn "0.5.0"]
                  [clj-http "3.10.1"]
-                 [net.sf.jasperreports/jasperreports "5.5.0"]
                  [org.apache.thrift/libthrift "0.10.0"]
                  [org.apache.kafka/kafka-clients "2.0.0"]
                  [com.amazonaws/aws-lambda-java-core "1.2.1"]
