@@ -7,7 +7,7 @@
 
   :plugins [[lein-cloverage "1.0.13" :exclusions [org.clojure/clojure]]
             [lein-vanity "0.2.0" :exclusions [org.clojure/clojure]]
-            [lein-kibit "0.1.7" :exclusions [org.clojure/clojure]]
+            [lein-kibit "0.1.8" :exclusions [org.clojure/clojure]]
             [lein-cljfmt "0.6.1" :exclusions [org.clojure/clojure rewrite-clj org.clojure/tools.reader org.clojure/tools.cli]]
             [jonase/eastwood "0.3.5" :exclusions [org.clojure/clojure]]
             [s3-wagon-private "1.3.4" :exclusions [commons-logging org.apache.httpcomponents/httpclient]]
