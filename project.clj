@@ -20,7 +20,7 @@
                  [org.clojure/data.json "1.0.0"]
                  [clj-jwt "0.1.1"]
                  [mockfn "0.5.0"]
-                 [clj-http "3.11.0"]
+                 [clj-http "3.12.1"]
                  [org.apache.thrift/libthrift "0.10.0"]
                  [org.apache.kafka/kafka-clients "2.6.0"]
                  [com.amazonaws/aws-lambda-java-core "1.2.1"]
