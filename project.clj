@@ -5,7 +5,7 @@
   :repositories [["central" {:url "https://repo1.maven.org/maven2/" :snapshots false}]
                  ["clojars" {:url "https://clojars.org/repo/"}]]
 
-  :plugins [[lein-cloverage "1.0.13" :exclusions [org.clojure/clojure]]
+  :plugins [[lein-cloverage "1.2.2" :exclusions [org.clojure/clojure]]
             [lein-vanity "0.2.0" :exclusions [org.clojure/clojure]]
             [lein-kibit "0.1.7" :exclusions [org.clojure/clojure]]
             [lein-cljfmt "0.6.1" :exclusions [org.clojure/clojure rewrite-clj org.clojure/tools.reader org.clojure/tools.cli]]
