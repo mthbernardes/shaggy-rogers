@@ -14,8 +14,6 @@
             [lein-ancient "0.6.15" :exclusions [com.fasterxml.jackson.core/jackson-databind com.fasterxml.jackson.core/jackson-core]]
             [lein-nsorg "0.3.0" :exclusions [rewrite-clj]]]
 
-  ;:pedantic? :abort
-
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/data.json "1.0.0"]
                  [clj-jwt "0.1.1"]
