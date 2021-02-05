@@ -6,7 +6,7 @@
   <packaging>jar</packaging>
   <version>0.1.0-SNAPSHOT</version>
   <name>shaggy-rogers</name>
-  <description>Clojure lambda which knows how to scan blob files and find sensitive information.</description>
+  <description>Clojure lambda which knows how to scan blob files and find sensitive information..</description>
   <url>https://github.com/mthbernardes/shaggy-rogers</url>
   <scm>
     <url>https://github.com/mthbernardes/shaggy-rogers</url>
