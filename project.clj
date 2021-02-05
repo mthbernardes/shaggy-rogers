@@ -22,7 +22,7 @@
                  [mockfn "0.5.0"]
                  [clj-http "3.11.0"]
                  [org.apache.thrift/libthrift "0.10.0"]
-                 [org.apache.kafka/kafka-clients "2.6.0"]
+                 [org.apache.kafka/kafka-clients "2.7.0"]
                  [com.amazonaws/aws-lambda-java-core "1.2.1"]
                  [com.novemberain/pantomime "2.11.0" :exclusions [org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
                  [com.cognitect.aws/api "0.8.484" :exclusions [org.clojure/data.json]]
