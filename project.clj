@@ -26,7 +26,7 @@
                  [com.amazonaws/aws-lambda-java-core "1.2.1"]
                  [com.novemberain/pantomime "2.11.0" :exclusions [org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
                  [com.cognitect.aws/api "0.8.484" :exclusions [org.clojure/data.json]]
-                 [com.cognitect.aws/endpoints "1.1.11.813"]
+                 [com.cognitect.aws/endpoints "1.1.11.946"]
                  [com.cognitect.aws/s3 "810.2.801.0"]]
   :aot :all
 
