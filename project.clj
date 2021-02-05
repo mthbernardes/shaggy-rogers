@@ -11,7 +11,7 @@
             [lein-cljfmt "0.6.1" :exclusions [org.clojure/clojure rewrite-clj org.clojure/tools.reader org.clojure/tools.cli]]
             [jonase/eastwood "0.3.5" :exclusions [org.clojure/clojure]]
             [s3-wagon-private "1.3.4" :exclusions [commons-logging org.apache.httpcomponents/httpclient]]
-            [lein-ancient "0.6.15" :exclusions [com.fasterxml.jackson.core/jackson-databind com.fasterxml.jackson.core/jackson-core]]
+            [lein-ancient "0.7.0" :exclusions [com.fasterxml.jackson.core/jackson-databind com.fasterxml.jackson.core/jackson-core]]
             [lein-nsorg "0.3.0" :exclusions [rewrite-clj]]]
 
   ;:pedantic? :abort
